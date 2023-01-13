@@ -1,4 +1,5 @@
 from CalculadoraEstrategica.interfaces.BuilderCalculadora import BuilderCalculadora
+from CalculadoraEstrategica.interfaces.Operacion import Operacion
 from CalculadoraEstrategica.operaciones.Division import Division
 from CalculadoraEstrategica.operaciones.Multiplicacion import Multiplicacion
 from CalculadoraEstrategica.operaciones.Resta import Resta
@@ -6,36 +7,40 @@ from CalculadoraEstrategica.operaciones.Suma import Suma
 
 
 class CalculadoraBasica:
+    operacion: Operacion
+
     def __init__(self):
-        self._operacion = None
+        self.operacion: Operacion = None
 
     def is_operacion(self) -> bool:
-        return self._operacion is not None
+        return self.operacion is not None
 
     def ejecuta_operacion(self, operando: float, operando2: float):
-        return self._operacion.ejecuta(operando, operando2)
+        return self.operacion.ejecuta(operando, operando2)
 
     class Builder(BuilderCalculadora):
-        # calculadora: CalculadoraBasica = Non
 
         def __init__(self):
             self._calculadora: CalculadoraBasica = CalculadoraBasica()
 
-        @staticmethod
-        def operacion(operador: str, self) -> BuilderCalculadora:
+        def set_operacion(self, operador: str):
             match operador:
-                case "+":
+                case "suma":
                     self._calculadora.operacion = Suma()
-                case "-":
+                case "resta":
                     self._calculadora.operacion = Resta()
-                case "*":
+                case "multiplicacion":
                     self._calculadora.operacion = Multiplicacion()
-                case "x":
+                case "division":
                     self._calculadora.operacion = Division()
                 case _:
                     self._calculadora.operacion = None
+
             return self
 
         @staticmethod
+        def get_builder():
+            return CalculadoraBasica.Builder()
+
         def build(self):
             return self._calculadora

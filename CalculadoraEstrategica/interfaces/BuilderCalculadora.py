@@ -1,11 +1,13 @@
 from abc import abstractmethod
-from abc import ABCMeta
+from abc import ABC
 
 
-class BuilderCalculadora(metaclass=ABCMeta):
-    @staticmethod
+class BuilderCalculadora(ABC):
+
     @abstractmethod
-    def operacion(self, operador: str):
+    def set_operacion(self, operador: str):
         pass
 
-
+    @abstractmethod
+    def build(self):
+        pass
