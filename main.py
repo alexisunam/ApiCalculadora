@@ -11,10 +11,11 @@ app = FastAPI(title='CalculadoraAPI',
 async def root():
     return {"message": "Hola api Calculadora!"}
 
+
 @app.get("/api/calculadorabasica/")
 async def calcula(operando: int = 0, operador: str = None, operando2: int = 0):
     resultado = 0
-    print(operador)
+
     if operador is not None:
         calculadora = CalculadoraBasica.Builder()\
             .set_operacion(operador).build()
@@ -24,4 +25,5 @@ async def calcula(operando: int = 0, operador: str = None, operando2: int = 0):
         else:
             return {"message": resultado}
     else:
+        resultado = "No se ingreso algun operador"
         return {"message": resultado}
