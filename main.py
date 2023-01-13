@@ -11,6 +11,7 @@ app = FastAPI(title='CalculadoraAPI',
 async def root():
     return {"message": "Hola api Calculadora!"}
 
+
 @app.get("/api/calculadorabasica/")
 async def calcula(operando: int = 0, operador: str = None, operando2: int = 0):
     resultado = 0
