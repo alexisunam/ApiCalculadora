@@ -8,6 +8,3 @@ class BuilderCalculadora(ABC):
     def set_operacion(self, operador: str):
         pass
 
-    @abstractmethod
-    def build(self):
-        pass

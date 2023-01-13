@@ -7,7 +7,6 @@ from CalculadoraEstrategica.operaciones.Suma import Suma
 
 
 class CalculadoraBasica:
-    operacion: Operacion
 
     def __init__(self):
         self.operacion: Operacion = None
@@ -37,10 +36,6 @@ class CalculadoraBasica:
                     self._calculadora.operacion = None
 
             return self
-
-        @staticmethod
-        def get_builder():
-            return CalculadoraBasica.Builder()
 
         def build(self):
             return self._calculadora
