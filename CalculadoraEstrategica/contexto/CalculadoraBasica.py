@@ -9,33 +9,33 @@ from CalculadoraEstrategica.operaciones.Suma import Suma
 class CalculadoraBasica:
 
     def __init__(self):
-        self.operacion: Operacion = None
+        self._operacion: Operacion = None
 
     def is_operacion(self) -> bool:
-        return self.operacion is not None
+        return self._operacion is not None
 
     def ejecuta_operacion(self, operando: float, operando2: float):
-        return self.operacion.ejecuta(operando, operando2)
+        return self._operacion.ejecuta(operando, operando2)
 
     class Builder(BuilderCalculadora):
 
         def __init__(self):
-            self._calculadora: CalculadoraBasica = CalculadoraBasica()
+            self.__calculadora: CalculadoraBasica = CalculadoraBasica()
 
         def set_operacion(self, operador: str):
             match operador:
                 case "suma":
-                    self._calculadora.operacion = Suma()
+                    self.__calculadora._operacion = Suma()
                 case "resta":
-                    self._calculadora.operacion = Resta()
+                    self.__calculadora._operacion = Resta()
                 case "multiplicacion":
-                    self._calculadora.operacion = Multiplicacion()
+                    self.__calculadora._operacion = Multiplicacion()
                 case "division":
-                    self._calculadora.operacion = Division()
+                    self.__calculadora._operacion = Division()
                 case _:
-                    self._calculadora.operacion = None
+                    self.__calculadora._operacion = None
 
             return self
 
         def build(self):
-            return self._calculadora
+            return self.__calculadora
