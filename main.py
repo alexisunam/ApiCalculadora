@@ -15,7 +15,7 @@ async def root():
 @app.get("/api/calculadorabasica/")
 async def calcula(operando: int = 0, operador: str = None, operando2: int = 0):
     resultado = 0
-    print(operador)
+
     if operador is not None:
         calculadora = CalculadoraBasica.Builder()\
             .set_operacion(operador).build()
