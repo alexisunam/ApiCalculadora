@@ -25,4 +25,5 @@ async def calcula(operando: int = 0, operador: str = None, operando2: int = 0):
         else:
             return {"message": resultado}
     else:
+        resultado = "No se ingreso algun operador"
         return {"message": resultado}
